@@ -12,13 +12,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 class CrimeFragment : Fragment() {
-    private lateinit var bindingClass: FragmentActivity
     private lateinit var titleField: EditText
     private lateinit var crime: Crime
     private lateinit var dateButton: Button
@@ -28,16 +28,6 @@ class CrimeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         crime = Crime()
-
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH) + 1
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val hours = calendar.get(Calendar.HOUR_OF_DAY)
-        val minutes = calendar.get(Calendar.MINUTE)
-        val  toast = Toast.makeText(this@CrimeFragment.requireContext(), "$day.$month.$year $hours:$minutes", Toast.LENGTH_LONG)
-        toast.setGravity(Gravity.TOP, 0, 0)
-        toast.show()
     }
 
     override fun onCreateView(
@@ -52,6 +42,17 @@ class CrimeFragment : Fragment() {
             isEnabled = false
         }
         solvedCheckBox = view.findViewById(R.id.crime_solved) as CheckBox
+
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val hours = calendar.get(Calendar.HOUR_OF_DAY)
+        val minutes = calendar.get(Calendar.MINUTE)
+
+        var date = view.findViewById(R.id.date) as TextView
+        date.text = "$day.$month.$year $hours:$minutes"
+
         return view
     }
 

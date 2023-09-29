@@ -6,6 +6,9 @@ plugins {
 android {
     namespace 'com.example.pr19criminalintent'
     compileSdk 34
+    androidResources {
+        generateLocaleConfig = true
+    }
 
     defaultConfig {
         applicationId "com.example.pr19criminalintent"
